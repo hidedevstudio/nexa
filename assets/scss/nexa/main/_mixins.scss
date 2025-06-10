@@ -1,0 +1,91 @@
+// --------------------------------------------------------
+// Mixins
+// --------------------------------------------------------
+
+@mixin flex($flex-options: ()) {
+    display: flex;
+    flex-direction: map-get($flex-options, direction);
+
+    @if map-has-key($flex-options, justify) {
+        justify-content: map-get($flex-options, justify);
+    }
+
+    @if map-has-key($flex-options, align) {
+        align-items: map-get($flex-options, align);
+    }
+
+    @if map-has-key($flex-options, wrap) {
+        flex-wrap: map-get($flex-options, wrap);
+    }
+
+    @if map-has-key($flex-options, gap) {
+        gap: map-get($flex-options, gap);
+    }
+}
+
+// Theme builder
+@mixin theme($theme, $scheme) {
+    @each $var, $value in map-get(map-get($schemes, $scheme), $theme) {
+        #{$var}: #{$value};
+    }
+}
+// Adptive
+@mixin sm {
+    @media (max-width: #{map-get($media-breakpoints, sm)}) {
+        @content;
+    }
+}
+
+@mixin sm-above {
+    @media (min-width: #{map-get($media-breakpoints, sm) + 1}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: #{map-get($media-breakpoints, md)}) {
+        @content;
+    }
+}
+
+@mixin md-above {
+    @media (min-width: #{map-get($media-breakpoints, md) + 1}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (max-width: #{map-get($media-breakpoints, lg)}) {
+        @content;
+    }
+}
+
+@mixin lg-above {
+    @media (min-width: #{map-get($media-breakpoints, lg) + 1}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (max-width: #{map-get($media-breakpoints, xl)}) {
+        @content;
+    }
+}
+
+@mixin xl-above {
+    @media (min-width: #{map-get($media-breakpoints, xl) + 1}) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media (max-width: #{map-get($media-breakpoints, xxl)}) {
+        @content;
+    }
+}
+
+@mixin xxl-above {
+    @media (min-width: #{map-get($media-breakpoints, xxl) + 1}) {
+        @content;
+    }
+}
